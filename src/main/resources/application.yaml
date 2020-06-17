@@ -1,0 +1,48 @@
+#################################################
+###             Default Settings              ###
+#################################################
+
+# Application and Active Profile
+spring:
+  application:
+    name: eureka-service
+  profiles:
+    active: dev
+    
+#################################################
+###             Profile Settings              ###
+#################################################
+
+---
+
+### DEV Environement Settings ###
+
+# Server
+server:
+  port: 7000
+
+# Spring Application
+spring:
+  profiles: dev
+  
+eureka:
+  environment: DEV
+  instance:
+    hostname: localhost
+  server:
+    enable-self-preservation: false
+    eviction-interval-timer-in-ms: 60000
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+    serviceUrl:
+      # defaultZone: http://localhost:7000/eureka/
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+
+security-config:
+  admin-name: admin
+  admin-pwd: $2a$10$EFbob63Sgr1kobn1zbBzp.gwFHXrD8jLX35DCp1JJ2MQzoKwcgcnu
+  admin-role: EUREKA-ADMIN
+  client-name: client
+  client-pwd: $2a$10$EFbob63Sgr1kobn1zbBzp.gwFHXrD8jLX35DCp1JJ2MQzoKwcgcnu
+  client-role: EUREKA-CLIENT

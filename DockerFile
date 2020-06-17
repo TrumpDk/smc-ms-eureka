@@ -1,0 +1,5 @@
+FROM openjdk:8-jdk-alpine
+VOLUME /eureka-server
+ADD /target/smc-ms-eureka-1.0.0-SNAPSHOT.jar eureka.jar
+EXPOSE 7000
+ENTRYPOINT ["java", "-Dspring.profiles.active=dev", "-jar", "eureka.jar"]
